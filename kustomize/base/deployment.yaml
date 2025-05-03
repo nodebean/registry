@@ -26,13 +26,9 @@ spec:
             - name: REGISTRY_STORAGE_S3_BUCKET
               value: "registry"
             - name: REGISTRY_STORAGE_S3_REGIONENDPOINT
-              value: "http://minio.my.home.lan:9000"
+              value: "http://10.10.13.3:9000"
             - name: REGISTRY_STORAGE_S3_SECURE
               value: "false"
-            - name: REGISTRY_HTTP_ADDR
-              value: ":5000"
-            - name: REGISTRY_HTTP_HEADERS_X_CONTENT_TYPE_OPTIONS
-              value: "nosniff"
           envFrom:
             - secretRef:
                 name: s3-credentials
