@@ -17,16 +17,22 @@ spec:
         - name: registry
           image: registry:3
           env:
-            - name: REGISTRY_CONFIGURATION_PATH
-              value: /etc/docker/registry/config.yml
+            - name: REGISTRY_LOG_LEVEL
+              value: info
+            - name: REGISTRY_STORAGE
+              value: s3
+            - name: REGISTRY_STORAGE_S3_REGION
+              value: us-east-1
+            - name: REGISTRY_STORAGE_S3_BUCKET
+              value: registry
+            - name: REGISTRY_STORAGE_S3_REGIONENDPOINT
+              value: http://minio.my.home.lan:9000
+            - name: REGISTRY_STORAGE_S3_SECURE
+              value: "false"
+            - name: REGISTRY_HTTP_ADDR
+              value: :5000
+            - name: REGISTRY_HTTP_HEADERS_X_CONTENT_TYPE_OPTIONS
+              value: [nosniff]
           envFrom:
             - secretRef:
                 name: s3-credentials
-          volumeMounts:
-            - name: config
-              mountPath: /etc/docker/registry
-              readOnly: true
-      volumes:
-        - name: config
-          configMap:
-            name: registry-config
