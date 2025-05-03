@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: registry-subnet-access
+  namespace: registry
+spec:
+  selector:
+    matchLabels:
+      app: registry
+  rules:
+    - from:
+        - source:
+            ipBlocks: ["10.10.0.0/16"]
+  action: ALLOW
