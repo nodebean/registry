@@ -18,21 +18,21 @@ spec:
           image: registry:3
           env:
             - name: REGISTRY_LOG_LEVEL
-              value: info
+              value: "info"
             - name: REGISTRY_STORAGE
-              value: s3
+              value: "s3"
             - name: REGISTRY_STORAGE_S3_REGION
-              value: us-east-1
+              value: "us-east-1"
             - name: REGISTRY_STORAGE_S3_BUCKET
-              value: registry
+              value: "registry"
             - name: REGISTRY_STORAGE_S3_REGIONENDPOINT
-              value: http://minio.my.home.lan:9000
+              value: "http://minio.my.home.lan:9000"
             - name: REGISTRY_STORAGE_S3_SECURE
               value: "false"
             - name: REGISTRY_HTTP_ADDR
-              value: :5000
+              value: ":5000"
             - name: REGISTRY_HTTP_HEADERS_X_CONTENT_TYPE_OPTIONS
-              value: [nosniff]
+              value: "nosniff"
           envFrom:
             - secretRef:
                 name: s3-credentials
