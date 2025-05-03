@@ -33,11 +33,10 @@ spec:
               value: "false"
             - name: REGISTRY_STORAGE_S3_V4AUTH
               value: "true"
-            - name: REGISTRY_STORAGE_S3_SECURE
-              value: "false"
             - name: REGISTRY_STORAGE_S3_CHUNKSIZE
               value: "5242880"
             - name: REGISTRY_STORAGE_S3_ROOTDIRECTORY
               value: "/"
+          envFrom:
             - secretRef:
                 name: s3-credentials
