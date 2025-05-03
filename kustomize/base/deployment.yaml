@@ -16,12 +16,16 @@ spec:
       containers:
         - name: registry
           image: registry:3
+          env:
+            - name: REGISTRY_CONFIGURATION_PATH
+              value: /etc/docker/registry/config.yml
           envFrom:
             - secretRef:
                 name: s3-credentials
           volumeMounts:
             - name: config
               mountPath: /etc/docker/registry
+              readOnly: true
       volumes:
         - name: config
           configMap:
