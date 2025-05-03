@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: registry
-          image: registry:3
+          image: registry:2
           env:
             - name: REGISTRY_LOG_FIELDS_SERVICE
               value: "registry"
