@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: registry
+  namespace: registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: registry
+  template:
+    metadata:
+      labels:
+        app: registry
+    spec:
+      containers:
+        - name: registry
+          image: registry:2
+          envFrom:
+            - secretRef:
+                name: s3-credentials
+          volumeMounts:
+            - name: registry-config-volume
+              mountPath: /etc/docker/registry/config.yml
+              subPath: config.yml
+      volumes:
+        - name: registry-config-volume
+          configMap:
+            name: registry-config
