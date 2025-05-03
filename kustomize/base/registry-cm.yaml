@@ -7,16 +7,19 @@ data:
   config.yml: |
     version: 0.1
     log:
-      level: info
-    storage:
-      s3:
-        accesskey: ${REGISTRY_STORAGE_S3_ACCESSKEY}
-        secretkey: ${REGISTRY_STORAGE_S3_SECRETKEY}
-        region: us-east-1
-        bucket: registry
-        regionendpoint: http://minio.my.home.lan:9000
-        secure: false
+        fields:
+            service: registry
     http:
-      addr: :5000
-      headers:
-        X-Content-Type-Options: [nosniff]
+        addr: :5000
+    storage:
+        cache:
+            layerinfo: inmemory
+        s3:
+            region: us-east-1
+            regionendpoint: http://minio.fava.casa:9000
+            bucket: registry
+            encrypt: false
+            secure: false
+            v4auth: true
+            chunksize: 5242880
+            rootdirectory: /
